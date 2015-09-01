@@ -31,3 +31,5 @@ GTAGS
 *.exe
 *.out
 *.app
+
+compileCommand
