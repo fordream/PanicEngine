@@ -43,7 +43,7 @@ class Vector2D {
   const Vector2D& operator*=(const double &d);
   Vector2D operator/(const double &d) const;
   const Vector2D& operator/=(const double &d);
-  int operator*(const Vector2D &v) const;
+  double operator*(const Vector2D &v) const;
   const Vector2D& operator*=(const Vector2D &v);
 
   bool operator==(const Vector2D &v) const;

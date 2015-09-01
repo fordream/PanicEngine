@@ -75,7 +75,7 @@ Vector2D Vector2D::operator*(const double &i) const {
   return Vector2D(x*i, y*i);
 }
 
-int Vector2D::operator*(const Vector2D &v) const {
+double Vector2D::operator*(const Vector2D &v) const {
   return x*v.x + y*v.y;
 }
 

@@ -25,6 +25,8 @@ int main()
     std::cout << big << std::endl;
     std::cout << big.length() << std::endl;
     std::cout << big.reverse() + big << std::endl;
+    big.zero();
+    std::cout << big << std::endl;
     return 0;
 }
 
