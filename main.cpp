@@ -1,5 +1,7 @@
-#include <iostream>
 #include <core/vector/Vector2D.h>
+#include <core/util/State.h>
+#include <core/util/StateMachine.h>
+#include <iostream>
 
 using namespace std;
 using namespace panicengine::core;
@@ -27,6 +29,8 @@ int main()
     std::cout << big.reverse() + big << std::endl;
     big.zero();
     std::cout << big << std::endl;
+
+    // util::State<vector::Vector2D> state;
     return 0;
 }
 

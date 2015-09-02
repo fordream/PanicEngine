@@ -1,6 +1,5 @@
 #include <core/vector/Vector2D.h>
 #include <iostream>
-#include <cmath>
 
 namespace panicengine {
 
@@ -11,18 +10,6 @@ namespace vector {
 Vector2D::Vector2D(double x, double y) : x(x), y(y) {}
 
 
-void Vector2D::zero() {
-  x = y = 0.0;
-}
-
-
-double Vector2D::length() const {
-  return sqrt(lengthSq());
-}
-
-double Vector2D::lengthSq() const {
-  return x*x + y*y;
-}
 
 void Vector2D::normalize() {
   if (!(*this)) {
@@ -32,29 +19,15 @@ void Vector2D::normalize() {
   }
 }
 
-Vector2D Vector2D::perp() const {
-  return Vector2D(y, -x);
-}
 
 void Vector2D::truncate(double max) {
-  if (lengthSq() > max*max) {
+  if (max > 0 && lengthSq() > max*max) {
     double l = length();
     x *= max/l;
     y *= max/l;
   }
 }
 
-double Vector2D::distance(const Vector2D &v) const {
-  return (v - *this).length();
-}
-
-double Vector2D::distanceSq(const Vector2D &v) const {
-  return (v - *this).lengthSq();
-}
-
-Vector2D Vector2D::reverse() const {
-  return Vector2D(-x, -y);
-}
 
 ////////////// Operators
 
@@ -63,20 +36,61 @@ Vector2D Vector2D::operator+(const Vector2D &v) const {
   return Vector2D(x + v.x, y + v.y);
 }
 
+const Vector2D& Vector2D::operator+=(const Vector2D &v) {
+  x += v.x;
+  y += v.y;
+  return *this;
+}
+
 Vector2D Vector2D::operator-(const Vector2D &v) const {
   return Vector2D(x - v.x, y - v.y);
+}
+
+const Vector2D& Vector2D::operator-=(const Vector2D &v) {
+  x -= v.x;
+  y -= v.x;
+  return *this;
 }
 
 Vector2D Vector2D::operator-() const {
   return Vector2D(-x, -y);
 }
 
-Vector2D Vector2D::operator*(const double &i) const {
-  return Vector2D(x*i, y*i);
+Vector2D Vector2D::operator*(const double &d) const {
+  return Vector2D(x*d, y*d);
+}
+
+const Vector2D& Vector2D::operator*=(const double &d) {
+  x *= d;
+  y *= d;
+  return *this;
+}
+
+Vector2D Vector2D::operator/(const double &d) const {
+  if (d != 0.0)
+    return Vector2D(x/d, y/d);
+
+  return Vector2D(); // TODO throw exception instead ? 
+}
+
+const Vector2D& Vector2D::operator/=(const double &d) {
+  if (d != 0.0) {
+    x /= d;
+    y /= d;
+  }
+  return *this;
 }
 
 double Vector2D::operator*(const Vector2D &v) const {
   return x*v.x + y*v.y;
+}
+
+bool Vector2D::operator==(const Vector2D &v) const {
+  return (x == v.x && y == v.y);
+}
+
+bool Vector2D::operator!=(const Vector2D &v) const {
+  return !(*this == v);
 }
 
 bool Vector2D::operator!() const {
@@ -86,6 +100,11 @@ bool Vector2D::operator!() const {
 std::ostream& operator<<(std::ostream &stream, const Vector2D &v) {
   stream << "{"<< v.x  << ", " << v.y << "}";
   return stream;
+}
+
+Vector2D& operator<<(Vector2D &v1, Vector2D &v2) {
+  v1 += v2;
+  return v1;
 }
 
 } // namespace vector
