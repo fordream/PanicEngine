@@ -33,3 +33,6 @@ GTAGS
 *.app
 
 compileCommand
+
+**/.DS_Store
+build/

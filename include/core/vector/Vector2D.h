@@ -9,11 +9,11 @@ namespace panicengine {
 
 
 class Vector2D {
- private:
+private:
   double x;
   double y;
 
- public:
+public:
   Vector2D(double x = 0.0, double y = 0.0);
 
   inline void zero() { x = y = 0.0; }
@@ -23,14 +23,14 @@ class Vector2D {
 
 
   inline double length() const { return sqrt(lengthSq()); }
-  inline double lengthSq() const { return x*x + y*y; }
-  
+  inline double lengthSq() const { return x * x + y * y; }
+
   inline Vector2D perp() const { return Vector2D(y, -x); }
 
   inline double distance(const Vector2D &v) const {
     return (v - *this).length();
   }
-  
+
   inline double distanceSq(const Vector2D &v) const {
     return (v - *this).lengthSq();
   }
@@ -40,7 +40,7 @@ class Vector2D {
 
 
   ///////////////////// Operators
-  
+
   Vector2D operator+(const Vector2D &v) const;
   const Vector2D& operator+=(const Vector2D &v);
   Vector2D operator-(const Vector2D &v) const;
