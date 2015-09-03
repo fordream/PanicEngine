@@ -5,9 +5,6 @@
 
 namespace panicengine {
 
-namespace core {
-
-namespace util {
 
 template <typename T>
 class StateMachine {
@@ -40,10 +37,6 @@ class StateMachine {
 
 };
 
-
-}  // namespace util
-
-}  // namespace core
 
 }  // namespace panicengine
 

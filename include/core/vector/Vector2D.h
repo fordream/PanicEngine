@@ -7,10 +7,6 @@
 
 namespace panicengine {
 
-namespace core {
-
-namespace vector {
-
 
 class Vector2D {
  private:
@@ -68,10 +64,6 @@ class Vector2D {
 
 
 
-
-} // namespace vector
-
-} // namespace core
 
 } // namespace panicengine
 

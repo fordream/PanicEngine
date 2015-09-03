@@ -3,10 +3,6 @@
 
 namespace panicengine {
 
-namespace core {
-
-namespace util {
-
 
 // each instance must be a singleton
 template <typename T>
@@ -36,10 +32,6 @@ class State {
 };
 
 
-
-} // namespace util
-
-} // namespace core
 
 } // namespace panicengine
 

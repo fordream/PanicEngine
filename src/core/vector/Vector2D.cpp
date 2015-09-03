@@ -3,9 +3,6 @@
 
 namespace panicengine {
 
-namespace core {
-
-namespace vector {
 
 Vector2D::Vector2D(double x, double y) : x(x), y(y) {}
 
@@ -107,8 +104,5 @@ Vector2D& operator<<(Vector2D &v1, Vector2D &v2) {
   return v1;
 }
 
-} // namespace vector
-
-} // namespace core
 
 } // namespace panicengine

@@ -2,8 +2,6 @@
 #define _STATEMACHINE_IMPL_H_
 
 namespace panicengine {
-namespace core {
-namespace util {
 
 
 template <typename T>
@@ -71,10 +69,6 @@ template <typename T>
 bool StateMachine<T>::isInState(State<T> *pState) const {
   return (pState == m_pCurrentState);
 }
-
-}  // namespace util
-
-}  // namespace core
 
 }  // namespace panicengine
 
