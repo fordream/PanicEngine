@@ -9,6 +9,7 @@ template <typename T>
 class State {
 
  private:
+  State();
   State(const State&);
   State& operator=(const State&);
 
@@ -16,9 +17,9 @@ class State {
  public:
   virtual ~State() {}
 
-  virtual void enter(T&) = 0;
-  virtual void execute(T&) = 0;
-  virtual void exit(T&) = 0;
+  virtual void enter(T*) = 0;
+  virtual void execute(T*) = 0;
+  virtual void exit(T*) = 0;
 
   // template<typename ChildClass>
   // static ChildClass<T>* instance() {
