@@ -1,6 +1,8 @@
 #ifndef __STATE_H__
 #define __STATE_H__
 
+#include "Telegram.h"
+
 namespace panicengine {
 
 
@@ -20,6 +22,10 @@ class State {
   virtual void enter(T*) = 0;
   virtual void execute(T*) = 0;
   virtual void exit(T*) = 0;
+
+  virtual bool onMessage(T* receiver, const Telegram &message) {
+    return false;
+  }
 
   // template<typename ChildClass>
   // static ChildClass<T>* instance() {
