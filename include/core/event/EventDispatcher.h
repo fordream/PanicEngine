@@ -3,10 +3,19 @@
 
 #include "Event.h"
 #include <vector>
+#include <string>
+#include <map>
 
 namespace panicengine {
 
 class EventDispatcher {
+ private:
+  std::map<const std::string, std::vector<eventFunctionPtr> > m_eventHandlerList;
+
+  EventDispatcher();
+  EventDispatcher(const EventDispatcher&);
+  EventDispatcher& operator=(const EventDispatcher&);
+
  public:
   void addEventListener(const std::string &type, eventFunctionPtr listener);
 
@@ -16,8 +25,8 @@ class EventDispatcher {
 
   void removeEventListener(const std::string &type, eventFunctionPtr listener);
 
- private:
-  std::map<const std::string, std::vector<eventFunctionPtr > > m_eventHandlerList;
+  EventDispatcher* instance();
+
 };
 
 }

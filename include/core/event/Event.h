@@ -5,15 +5,17 @@
 
 namespace panicengine {
 
-class Event {
-public:
-    Event(const std::string &type): m_type(type) {
-    }
+struct Event {
+  
+  Event(const std::string &type, void *target = NULL):
+      m_type(type),
+      m_target(target)
+  {}
 
-    const std::string m_type;
-    /*
-        const void* target;
-    */
+  const std::string m_type;
+    
+  const void* m_target;
+    
 };
 
 // Event function callback pointer type
