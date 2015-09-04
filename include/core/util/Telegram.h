@@ -6,6 +6,15 @@
 namespace panicengine {
 
 struct Telegram {
+
+  Telegram(int sender, int receiver, std::string message, void *extrainfo) :
+      sender(sender),
+      receiver(receiver),
+      message(message),
+      dispatchTime(0),
+      extrainfo(extrainfo) {}
+
+
   int sender;
   int receiver;
 
@@ -14,6 +23,10 @@ struct Telegram {
   double dispatchTime;
 
   void *extrainfo;
+
+  friend bool operator<(const Telegram &t1, const Telegram &t2) {
+    return t1.dispatchTime < t2.dispatchTime;
+  }
 };
 
 } // namespace panicengine

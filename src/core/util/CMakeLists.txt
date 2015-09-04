@@ -1,4 +1,4 @@
-set(util_SRCS  Entity.cpp EntityManager.cpp)
+set(util_SRCS  Entity.cpp EntityManager.cpp MessageDispatcher.cpp)
 
 add_library(util SHARED ${util_SRCS})
 

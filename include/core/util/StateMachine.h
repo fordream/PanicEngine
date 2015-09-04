@@ -35,6 +35,8 @@ class StateMachine {
 
   bool isInState(State<T> *pState) const;
 
+  bool handleMessage(const Telegram &message);
+
 };
 
 

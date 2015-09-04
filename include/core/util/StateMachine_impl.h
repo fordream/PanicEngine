@@ -70,6 +70,21 @@ bool StateMachine<T>::isInState(State<T> *pState) const {
   return (pState == m_pCurrentState);
 }
 
+
+template <typename T>
+bool StateMachine<T>::handleMessage(const Telegram &message) {
+  if (m_pCurrentState && m_pCurrentState->onMessage(m_pOwner, message)) {
+    return true;
+  }
+  else if (m_pGlobalState && m_pGlobalState->onMessage(m_pOwner, message)) {
+    return true;
+  }
+
+  return false;
+}
+
+
+
 }  // namespace panicengine
 
 

@@ -1,7 +1,5 @@
 #include <core/event/EventDispatcher.h>
 
-#include <vector>
-#include <string>
 
 namespace panicengine {
 
