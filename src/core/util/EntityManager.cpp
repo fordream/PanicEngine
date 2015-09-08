@@ -27,8 +27,13 @@ bool EntityManager::isValidID(int id) {
 }
 
 
-EntityMap::const_iterator EntityManager::iterator() {
+EntityMap::const_iterator EntityManager::begin() {
   return m_entityMap.begin();
 }
+
+EntityMap::const_iterator EntityManager::end() {
+  return m_entityMap.end();
+}
+
 
 } // namespace panicengine

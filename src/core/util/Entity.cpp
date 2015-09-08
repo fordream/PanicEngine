@@ -28,4 +28,5 @@ int Entity::getID() const {
   return m_id;
 }
 
+
 } // namespace panicengine

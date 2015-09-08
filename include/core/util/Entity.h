@@ -2,6 +2,7 @@
 #define _ENTITY_H_
 
 #include "Telegram.h"
+#include "../vector/Vector2D.h"
 
 namespace panicengine {
 
@@ -19,6 +20,8 @@ class Entity {
   virtual bool handleMessage(const Telegram &message) = 0;
 
   int getID() const;
+
+  virtual void render(Vector2D positionOffset, int ratio) const = 0;
   
 };
 

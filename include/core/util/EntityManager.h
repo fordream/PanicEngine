@@ -31,7 +31,8 @@ class EntityManager
 
   bool isValidID(int id);
 
-  EntityMap::const_iterator iterator();
+  EntityMap::const_iterator begin();
+  EntityMap::const_iterator end();
   
 };
 

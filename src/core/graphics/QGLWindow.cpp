@@ -1,5 +1,6 @@
 #include <core/graphics/QGLWindow.h>
 #include <core/util/EntityManager.h>
+#include <core/vector/Vector2D.h>
 #include <QtGui/QOpenGLFunctions>
 
 #include <iostream>
@@ -86,13 +87,16 @@ void QGLWindow::paintGL() {
 
 
   // draw the games entities
-  panicengine::EntityMap::const_iterator it = panicengine::EntityMgr->iterator();
-  
+  panicengine::EntityMap::const_iterator it;
+
+  for (it = panicengine::EntityMgr->begin();
+       it != panicengine::EntityMgr->end(); ++it) {
+    it->second->render(panicengine::Vector2D(m_posX, m_posY),
+                       m_width/m_originalWidth);
+  }
+
   // drawEllipse(100, 100, 40, 40, 500);
 
-  // render the image followed by the ellipses on the face
-  // renderImage();
-  // renderFace();
 
   glPopMatrix();
 
