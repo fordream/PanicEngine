@@ -75,3 +75,77 @@ int main(int argc, char **argv)
     return 0;
 }
 
+
+
+void QGLWindow::renderImage() {
+  // make a (scaled) copy from m_renderedImage that will be rendered
+  QImage image;
+
+  int width = m_renderedImage.width();
+  int height = m_renderedImage.height();
+
+  // scale only if both dimensions are modified
+  if (width != m_width &&
+      height != m_height) {
+    image = m_renderedImage.scaled(QSize(m_width, m_height),
+                                   Qt::IgnoreAspectRatio,
+                                   Qt::SmoothTransformation);
+  }
+  else {
+    image = m_renderedImage;
+  }
+
+  glRasterPos2i(m_posX, m_posY);
+
+  width = image.width();
+  height = image.width();
+
+  glDrawPixels(width, height, GL_RGBA, GL_UNSIGNED_BYTE, image.bits());
+}
+
+void QGLWindow::renderFace() {
+  // calculate the ratio of between the original image and the rendered image
+  float ratio = static_cast<float>(m_width)
+                /static_cast<float>(m_renderedImage.width());
+
+  // scale and set the new origin for each ellipse
+  // in order to draw it on top of the face
+
+  drawEllipse(m_face.face.scale(ratio).setOrigin(m_posX, -m_posY));
+  drawEllipse(m_face.eyes[0].scale(ratio).setOrigin(m_posX, -m_posY));
+  drawEllipse(m_face.eyes[1].scale(ratio).setOrigin(m_posX, -m_posY));
+  drawEllipse(m_face.smile.scale(ratio).setOrigin(m_posX, -m_posY));
+}
+
+
+bool QGLWindow::showImage(const cv::Mat &image, const SFace &face) {
+  // get the detected face position
+  m_face = SFace(face);
+
+  // keep original image ratio
+  m_ratio = static_cast<float>(image.cols)/static_cast<float>(image.rows);
+
+  // convert the image in a Qt/OpenGL one
+  if (image.channels() == 3) {
+    m_renderedImage = QImage((const unsigned char*)image.data,
+                             image.cols, image.rows,
+                             static_cast<int>(image.step),
+                             QImage::Format_RGB888);
+  }
+  else if (image.channels() == 1) {
+    m_renderedImage = QImage((const unsigned char*)image.data,
+                             image.cols, image.rows,
+                             static_cast<int>(image.step),
+                             QImage::Format_Indexed8);
+  }
+  else
+    return false;  // impossible to convert the image
+
+  // conversion needs to mirror back the image
+  m_renderedImage = m_renderedImage.mirrored();
+
+
+  updateScene();
+
+  return true;
+}

@@ -10,19 +10,16 @@ class QGLWindow : public QOpenGLWidget {
   // Q_OBJECT
 
  private:
-  /**
-   * @brief m_renderedImage The image to render in the OpenGL context
-   */
-  QImage m_renderedImage;
 
   /**
    * @brief m_backgroundColor of the window
    */
   QColor m_backgroundColor;
 
-  int m_imWidth;
-  int m_imHeight;
-  float m_imRatio;
+  int m_width;
+  int m_height;
+  float m_aspectRatio;
+  float m_originalWidth;
 
   /**
    * @brief m_posX the X position where to draw the image
@@ -45,15 +42,6 @@ class QGLWindow : public QOpenGLWidget {
                    double eHeight,
                    int nbSegment = 100);
 
-  /**
-   * @brief renderImage render the image
-   */
-  void renderImage();
-
-  /**
-   * @brief renderFace draw ellipses on the ROI of the face
-   */
-  void renderFace();
 
   /**
    * @brief updateScene called when the scene needs to be updated
@@ -61,16 +49,7 @@ class QGLWindow : public QOpenGLWidget {
   void updateScene();
 
  public:
-  explicit QGLWindow(QWidget *parent = 0);
-
-  /**
-   * @brief showImage show the image image with OpenGL and draw the face detected with OpenCV
-   * on the image
-   * @param image
-   * @param face
-   * @return true on success, false otherwise
-   */
-  // bool showImage(const cv::Mat &image, const SFace &face);
+  explicit QGLWindow(QWidget *parent = 0, float ratio = 16.0f/9.0f);
 
 
  protected:
