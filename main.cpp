@@ -3,13 +3,15 @@
 #include <core/util/StateMachine.h>
 #include <iostream>
 
+
+#include <QtWidgets/QApplication>
+#include <core/graphics/QGLWindow.h>
+
+
 using namespace std;
 using namespace panicengine;
 
-
-
-int main()
-{
+int main(int argc, char **argv) {
     cout << "Hello World!" << endl;
     Vector2D test(1.0, 2.0);
     Vector2D test2(3.0, 4.0);
@@ -35,6 +37,13 @@ int main()
     // State<Vector2D>::instance();
 
     // util::State<vector::Vector2D> state;
-    return 0;
+
+
+    // testing graphics
+    QApplication app(argc, argv);
+    QGLWindow window;
+
+    window.show();
+    return app.exec();
 }
 

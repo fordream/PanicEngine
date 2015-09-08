@@ -7,7 +7,7 @@
 
 
 class QGLWindow : public QOpenGLWidget {
-  Q_OBJECT
+  // Q_OBJECT
 
  private:
   /**
@@ -20,8 +20,8 @@ class QGLWindow : public QOpenGLWidget {
    */
   QColor m_backgroundColor;
 
-  int m_imHeight;
   int m_imWidth;
+  int m_imHeight;
   float m_imRatio;
 
   /**

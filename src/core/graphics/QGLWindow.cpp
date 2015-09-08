@@ -9,9 +9,10 @@ QGLWindow::QGLWindow(QWidget *parent):
     m_backgroundColor(QColor::fromRgb(150, 150, 150)),
     m_imWidth(0),
     m_imHeight(0),
+    m_imRatio(4.0f/3.0f),
     m_posX(0),
-    m_posY(0),
-    m_imRatio(4.0f/3.0f) {}
+    m_posY(0)
+{}
 
 
 
@@ -109,8 +110,8 @@ void QGLWindow::renderImage() {
 
 void QGLWindow::renderFace() {
   // calculate the ratio of between the original image and the rendered image
-  float ratio = static_cast<float>(m_imWidth)
-                /static_cast<float>(m_renderedImage.width());
+  // float ratio = static_cast<float>(m_imWidth)
+  //               /static_cast<float>(m_renderedImage.width());
 
   // scale and set the new origin for each ellipse
   // in order to draw it on top of the face
@@ -155,10 +156,10 @@ void QGLWindow::renderFace() {
 // }
 
 void QGLWindow::drawEllipse(double eX,
-                                 double eY,
-                                 double eWidth,
-                                 double eHeight,
-                                 int nbSegment) {
+                            double eY,
+                            double eWidth,
+                            double eHeight,
+                            int nbSegment) {
 
   glBegin(GL_LINE_LOOP);
   for (int i = 0; i < nbSegment; ++i) {
