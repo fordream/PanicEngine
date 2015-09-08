@@ -1,5 +1,5 @@
 #include <core/graphics/QGLWindow.h>
-
+#include <core/util/EntityManager.h>
 #include <QtGui/QOpenGLFunctions>
 
 #include <iostream>
@@ -84,7 +84,11 @@ void QGLWindow::paintGL() {
 
   glRasterPos2i(m_posX, m_posY);  // set origin for drawing images
 
-  drawEllipse(100, 100, 40, 40, 500);
+
+  // draw the games entities
+  panicengine::EntityMap::const_iterator it = panicengine::EntityMgr->iterator();
+  
+  // drawEllipse(100, 100, 40, 40, 500);
 
   // render the image followed by the ellipses on the face
   // renderImage();

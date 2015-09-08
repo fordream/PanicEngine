@@ -6,19 +6,20 @@
 
 namespace panicengine {
 
+typedef std::map<int, Entity*> EntityMap;
+
 class EntityManager
 {
  private:
-  typedef std::map<int, Entity*> EntityMap;
 
   EntityMap m_entityMap;
 
-  EntityManager();
+  EntityManager() {}
   EntityManager(const EntityManager&);
   EntityManager& operator=(const EntityManager&);
   
  public:
-  virtual ~EntityManager();
+  virtual ~EntityManager() {}
 
   static EntityManager* instance();
 
@@ -29,6 +30,8 @@ class EntityManager
   void removeEntity(int id);
 
   bool isValidID(int id);
+
+  EntityMap::const_iterator iterator();
   
 };
 
