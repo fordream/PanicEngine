@@ -42,7 +42,8 @@ class QGLWindow : public QOpenGLWidget {
                    double eHeight,
                    int nbSegment = 100);
 
-
+  void drawTrianlge(float x1, float y1, float x2, float y2, float x3, float y3);
+  
   /**
    * @brief updateScene called when the scene needs to be updated
    */

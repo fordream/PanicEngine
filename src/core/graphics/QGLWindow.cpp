@@ -96,8 +96,9 @@ void QGLWindow::paintGL() {
   }
 
   // drawEllipse(100, 100, 40, 40, 500);
+  drawTrianlge(10, 10, 10, 30, 30, 20);
 
-
+  
   glPopMatrix();
 
   glFlush();
@@ -124,4 +125,35 @@ void QGLWindow::drawEllipse(double eX,
     glVertex2f(m_posX + (eX + x)*ratio, m_posY + (eY + y)*ratio);
   }
   glEnd();
+}
+
+
+void QGLWindow::drawTrianlge(float x1,
+                             float y1,
+                             float x2,
+                             float y2,
+                             float x3,
+                             float y3) {
+
+  // QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
+  float vertices[] = {x1, y1, x2, y2, x3, y3};
+
+  // Méthode 1
+  // f->glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, vertices);
+  // f->glEnableVertexAttribArray(0);
+  // f->glDrawArrays(GL_TRIANGLES, 0, 3);
+  // f->glDisableVertexAttribArray(0);
+
+  // Méthode 2
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glVertexPointer(2, GL_FLOAT, 0, vertices);
+  glDrawArrays(GL_TRIANGLES, 0, 3);
+  glDisableClientState(GL_VERTEX_ARRAY);
+
+  // Méthode 3
+  // glBegin(GL_TRIANGLE_FAN);
+  // glVertex2f(x1, y1);
+  // glVertex2f(x2, y2);
+  // glVertex2f(x3, y3);
+  // glEnd();
 }

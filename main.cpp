@@ -4,9 +4,9 @@
 #include <iostream>
 
 
-#include <QtWidgets/QApplication>
-#include <core/graphics/QGLWindow.h>
-
+// #include <QtWidgets/QApplication>
+// #include <core/graphics/QGLWindow.h>
+#include <core/graphics/Scene.h>
 
 using namespace std;
 using namespace panicengine;
@@ -40,10 +40,12 @@ int main(int argc, char **argv) {
 
 
     // testing graphics
-    QApplication app(argc, argv);
-    QGLWindow window;
+    // QApplication app(argc, argv);
+    // QGLWindow window;
 
-    window.show();
-    return app.exec();
+    // window.show();
+    // return app.exec();
+    Scene s("New Scene", 800, 600, argc, argv);
+    s.run();
 }
 

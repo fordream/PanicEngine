@@ -1,4 +1,4 @@
-set(graphics_SRCS QGLWindow.cpp)
+set(graphics_SRCS Scene.cpp QGLWindow.cpp)
 
 add_library(graphics SHARED ${graphics_SRCS})
 # link Qt OpenGL libraries
