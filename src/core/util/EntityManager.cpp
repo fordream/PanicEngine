@@ -8,6 +8,11 @@ EntityManager* EntityManager::instance() {
   return &instance;
 }
 
+
+EntityManager::~EntityManager() {
+  clear();
+}
+
 void EntityManager::registerEntity(Entity *newEntity) {
   m_entityMap[newEntity->getID()] = newEntity;
 }
@@ -20,6 +25,14 @@ void EntityManager::removeEntity(int id) {
   m_entityMap.erase(id);
 }
 
+
+void EntityManager::clear() {
+  for (EntityMap::iterator it = m_entityMap.begin();
+       it != m_entityMap.end();
+       ++it) {
+    delete (it->second);
+  }
+}
 
 bool EntityManager::isValidID(int id) {
   EntityMap::iterator test = m_entityMap.find(id);

@@ -50,7 +50,7 @@ class QGLWindow : public QOpenGLWidget {
   void updateScene();
 
  public:
-  explicit QGLWindow(QWidget *parent = 0, float ratio = 16.0f/9.0f);
+  explicit QGLWindow(int width, int height, QWidget *parent = 0);
 
 
  protected:

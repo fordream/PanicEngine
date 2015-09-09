@@ -19,7 +19,7 @@ class EntityManager
   EntityManager& operator=(const EntityManager&);
   
  public:
-  virtual ~EntityManager() {}
+  virtual ~EntityManager();
 
   static EntityManager* instance();
 
@@ -28,6 +28,8 @@ class EntityManager
   Entity* getEntityFromID(int id) const;
   
   void removeEntity(int id);
+
+  void clear();
 
   bool isValidID(int id);
 

@@ -5,16 +5,17 @@
 
 #include <iostream>
 
-QGLWindow::QGLWindow(QWidget *parent, float aspectRatio):
+QGLWindow::QGLWindow(int width, int height, QWidget *parent):
     QOpenGLWidget(parent),
     m_backgroundColor(QColor::fromRgb(150, 150, 150)),
-    m_width(0),
-    m_height(0),
-    m_aspectRatio(aspectRatio),
-    m_originalWidth(-1),
+    m_width(width),
+    m_height(height),
+    m_aspectRatio(static_cast<float>(width)/static_cast<float>(height)),
+    m_originalWidth(width),
     m_posX(0),
-    m_posY(0)
-{}
+    m_posY(0) {
+  resize(width, height);
+}
 
 
 
