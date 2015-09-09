@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
 
     // window.show();
     // return app.exec();
-    Scene s("New Scene", 800, 600, argc, argv);
+    Scene s("Babouchot", 800, 600, argc, argv);
     s.run();
 }
 
