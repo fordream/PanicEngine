@@ -5,7 +5,7 @@
 
 class SampleScene : public panicengine::Scene {
  public:
-  SampleScene(QString s, int width, int height, int argc, char **argv);
+  SampleScene(int argc, char **argv);
   virtual bool init();
 };
 
