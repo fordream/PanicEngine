@@ -16,6 +16,7 @@ find_package(Qt5Widgets REQUIRED)
 set(CMAKE_CXX_FLAGS "-fPIC -g -Wall")
 
 add_subdirectory(src)
+add_subdirectory(samples)
 
 aux_source_directory(. SRC_LIST)
 add_executable(${PROJECT_NAME} ${SRC_LIST})
