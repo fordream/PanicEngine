@@ -21,7 +21,7 @@ class Entity {
 
   int getID() const;
 
-  virtual void render(Vector2D positionOffset, int ratio) const = 0;
+  virtual void render(Vector2D positionOffset, float ratio) const = 0;
   
 };
 

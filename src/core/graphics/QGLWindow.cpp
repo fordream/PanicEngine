@@ -70,8 +70,14 @@ void QGLWindow::resizeGL(int width, int height) {
 
 
 void QGLWindow::updateScene() {
-  if (this->isVisible())
+  if (this->isVisible()) {
+    panicengine::EntityMap::const_iterator it;
+    for (it = panicengine::EntityMgr->begin();
+         it != panicengine::EntityMgr->end(); ++it) {
+      it->second->update();
+    }
     update();
+  }
 }
 
 
@@ -89,11 +95,11 @@ void QGLWindow::paintGL() {
 
   // draw the games entities
   panicengine::EntityMap::const_iterator it;
-
+  std::cout << m_width << "/" << m_originalWidth << std::endl;
   for (it = panicengine::EntityMgr->begin();
        it != panicengine::EntityMgr->end(); ++it) {
     it->second->render(panicengine::Vector2D(m_posX, m_posY),
-                       m_width/m_originalWidth);
+                       static_cast<float>(m_width)/static_cast<float>(m_originalWidth));
   }
 
   // drawEllipse(100, 100, 40, 40, 500);

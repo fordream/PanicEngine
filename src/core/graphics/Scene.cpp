@@ -22,7 +22,10 @@ bool Scene::init() {
 
 
 bool Scene::run() {
-  return m_app.exec();
+  if (init())
+    return m_app.exec();
+  else
+    return false;
 }
 
 

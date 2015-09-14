@@ -1,4 +1,4 @@
-set(sampleScene_SRCS sampleScene.cpp main.cpp)
+set(sampleScene_SRCS sampleScene.cpp TestEntity.cpp main.cpp)
 
 add_executable(sampleScene ${sampleScene_SRCS})
 
