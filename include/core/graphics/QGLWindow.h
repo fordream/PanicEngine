@@ -3,6 +3,9 @@
 
 
 #include <QtWidgets/QOpenGLWidget>
+#include <core/vector/Vector2D.h>
+
+namespace panicengine {
 
 
 class QGLWindow : public QOpenGLWidget {
@@ -41,8 +44,8 @@ class QGLWindow : public QOpenGLWidget {
                    double eHeight,
                    int nbSegment = 100);
 
-  void drawTrianlge(float x1, float y1, float x2, float y2, float x3, float y3);
-  
+  void drawTrianlge(Vector2D &v1, Vector2D &v2, Vector2D &v3);
+
   /**
    * @brief updateScene called when the scene needs to be updated
    */
@@ -57,8 +60,9 @@ class QGLWindow : public QOpenGLWidget {
   void initializeGL() Q_DECL_OVERRIDE;
   void paintGL() Q_DECL_OVERRIDE;
   void resizeGL(int width, int height) Q_DECL_OVERRIDE;
-
 };
 
+
+}  // namespace panicengine
 
 #endif /* _QGLWINDOW_H_ */

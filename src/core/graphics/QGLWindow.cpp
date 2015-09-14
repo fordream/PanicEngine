@@ -5,6 +5,9 @@
 
 #include <iostream>
 
+
+namespace panicengine {
+
 QGLWindow::QGLWindow(int width, int height, QWidget *parent):
     QOpenGLWidget(parent),
     m_backgroundColor(QColor::fromRgb(150, 150, 150)),
@@ -44,10 +47,6 @@ void QGLWindow::resizeGL(int width, int height) {
     m_width = height*m_aspectRatio;
     m_height = height;
   }
-
-  // get the original width of the window to resize the painted elements 
-  if (m_originalWidth == -1)
-    m_originalWidth = width;
 
   // calculate the new position of the image in the window
   m_posX = (width - m_width)/2;
@@ -93,7 +92,7 @@ void QGLWindow::paintGL() {
   glRasterPos2i(m_posX, m_posY);  // set origin for drawing images
 
 
-  // draw the games entities
+  // draw the game entities
   panicengine::EntityMap::const_iterator it;
   std::cout << m_width << "/" << m_originalWidth << std::endl;
   for (it = panicengine::EntityMgr->begin();
@@ -102,14 +101,9 @@ void QGLWindow::paintGL() {
                        static_cast<float>(m_width)/static_cast<float>(m_originalWidth));
   }
 
-  // drawEllipse(100, 100, 40, 40, 500);
-  drawTrianlge(10, 10, 10, 30, 30, 20);
-
-  
   glPopMatrix();
 
   glFlush();
-
 }
 
 
@@ -135,15 +129,12 @@ void QGLWindow::drawEllipse(double eX,
 }
 
 
-void QGLWindow::drawTrianlge(float x1,
-                             float y1,
-                             float x2,
-                             float y2,
-                             float x3,
-                             float y3) {
+void QGLWindow::drawTrianlge(Vector2D &v1,
+                             Vector2D &v2,
+                             Vector2D &v3) {
 
   // QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
-  float vertices[] = {x1, y1, x2, y2, x3, y3};
+  double vertices[] = {v1.x, v1.y, v2.x, v2.y, v3.x, v3.y};
 
   // Méthode 1
   // f->glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, vertices);
@@ -153,7 +144,7 @@ void QGLWindow::drawTrianlge(float x1,
 
   // Méthode 2
   glEnableClientState(GL_VERTEX_ARRAY);
-  glVertexPointer(2, GL_FLOAT, 0, vertices);
+  glVertexPointer(2, GL_DOUBLE, 0, vertices);
   glDrawArrays(GL_TRIANGLES, 0, 3);
   glDisableClientState(GL_VERTEX_ARRAY);
 
@@ -164,3 +155,6 @@ void QGLWindow::drawTrianlge(float x1,
   // glVertex2f(x3, y3);
   // glEnd();
 }
+
+
+}  // namespace panicengine
